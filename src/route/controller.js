@@ -40,7 +40,7 @@ const getAllRepositories = async (username) => {
         return cache.get(username);
     } catch (error) {
         if (error.response.status == 404 || error.response.statusText == 'Not Found') {
-            throw new Error('This users seems to be dont exists!');
+            throw new Error('This user seems to be don\'t exists!');
         }
         throw error;
     }
