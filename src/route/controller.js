@@ -2,11 +2,16 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const cache = new Map();
 
+const cacheTime = 60 * 1000;
+
 const getAllRepositories = async (username) => {
     try {
         if (cache.has(username)) {
             //TODO: Check for expire time
-            return cache.get(username);
+            const diff = Date.now() - cache.get(username).time;
+            console.log(diff);
+            if (diff < cacheTime)
+                return { ...cache.get(username), cache: true };
         }
         const response = await axios.get(`https://github.com/${username}?tab=repositories`);
         const html = response.data;
@@ -31,8 +36,8 @@ const getAllRepositories = async (username) => {
                 });
             });
         }
-        cache.set(username, { repositories, time: Date.now() });
-        return repositories;
+        cache.set(username, { cache: false, time: Date.now(), repositories: repositories, });
+        return cache.get(username);
     } catch (error) {
         if (error.response.status == 404 || error.response.statusText == 'Not Found') {
             throw new Error('This users seems to be dont exists!');
@@ -44,8 +49,8 @@ const getAllRepositories = async (username) => {
 const getAll = async (req, res, next) => {
     try {
         const username = req.params.username;
-        const repositories = await getAllRepositories(username);
-        res.json({ repositories });
+        const data = await getAllRepositories(username);
+        res.json({ data });
     } catch (error) {
         next(error);
     }
@@ -55,8 +60,8 @@ const getAll = async (req, res, next) => {
 const getLatestCommit = async (req, res, next) => {
     try {
         const username = req.params.username;
-        const repositories = await getAllRepositories(username);
-        res.json({ repositories });
+        const data = await getAllRepositories(username);
+        res.json({ data });
     } catch (error) {
         next(error);
     }
