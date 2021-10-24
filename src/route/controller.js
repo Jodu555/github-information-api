@@ -34,6 +34,9 @@ const getAllRepositories = async (username) => {
         cache.set(username, { repositories, time: Date.now() });
         return repositories;
     } catch (error) {
+        if (error.response.status == 404 || error.response.statusText == 'Not Found') {
+            throw new Error('This users seems to be dont exists!');
+        }
         throw error;
     }
 }
