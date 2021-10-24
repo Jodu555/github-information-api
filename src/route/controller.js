@@ -9,7 +9,6 @@ const getAllRepositories = async (username) => {
         if (cache.has(username)) {
             //TODO: Check for expire time
             const diff = Date.now() - cache.get(username).time;
-            console.log(diff);
             if (diff < cacheTime)
                 return { ...cache.get(username), cache: true };
         }
@@ -60,7 +59,7 @@ const getAll = async (req, res, next) => {
 const getLatestCommit = async (req, res, next) => {
     try {
         const username = req.params.username;
-        const data = await getAllRepositories(username);
+        const data = JSON.parse(JSON.stringify(await getAllRepositories(username)));
         data.repositories = data.repositories.sort((a, b) => {
             return a.lastUpdated + b.lastUpdated;
         });
@@ -72,7 +71,25 @@ const getLatestCommit = async (req, res, next) => {
     }
 }
 
+const getLanguagaeDevision = async (req, res, next) => {
+    try {
+        const username = req.params.username;
+        const data = JSON.parse(JSON.stringify(await getAllRepositories(username)));
+        const devision = {};
+        data.repositories.forEach((repo) => {
+            devision[repo.language] = devision[repo.language] + 1 || 1
+        });
+
+        delete data.repositories;
+        data.devision = devision;
+        res.json({ data });
+    } catch (error) {
+        next(error);
+    }
+}
+
 module.exports = {
     getAll,
-    getLatestCommit
+    getLatestCommit,
+    getLanguagaeDevision
 }
