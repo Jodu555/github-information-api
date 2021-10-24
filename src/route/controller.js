@@ -61,6 +61,11 @@ const getLatestCommit = async (req, res, next) => {
     try {
         const username = req.params.username;
         const data = await getAllRepositories(username);
+        data.repositories = data.repositories.sort((a, b) => {
+            return a.lastUpdated + b.lastUpdated;
+        });
+        data.info = data.repositories[0];
+        delete data.repositories;
         res.json({ data });
     } catch (error) {
         next(error);
