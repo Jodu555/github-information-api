@@ -32,7 +32,7 @@ app.get('/:username', async (req, res, next) => {
                 name,
                 description,
                 language,
-                lastUpdated: datetime,
+                lastUpdated: new Date(datetime).getTime(),
             });
         });
         res.json({ repositories });
