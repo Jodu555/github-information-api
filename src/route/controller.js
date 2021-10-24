@@ -2,7 +2,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const cache = new Map();
 
-const cacheTime = 60 * 1000;
+const cacheTime = 20 * 60 * 1000;
 
 const getAllRepositories = async (username) => {
     try {
