@@ -3,47 +3,60 @@ const cheerio = require('cheerio');
 const cache = new Map();
 
 const getAllRepositories = async (username) => {
-    if (cache.has(username)) {
-        //TODO: Check for expire time
-        return cache.get(username);
-    }
-    const response = await axios.get(`https://github.com/${username}?tab=repositories`);
-    const html = response.data;
-    const $ = cheerio.load(html);
-    const repositories = [];
-    if (typeof $('#user-repositories-list').html() == 'string') {
-        const $repoList = cheerio.load($('#user-repositories-list').html());
-        $repoList('li').each((i, item) => {
-            const $repo = cheerio.load($repoList(item).html());
-            const name = $repo('[itemprop="name codeRepository"]').text().trim();
-            const description = $repo('[itemprop="description"]').text().trim();
-            const language = $repo('[itemprop="programmingLanguage"]').text().trim();
-            const repoHtml = $repo.html();
-            //!Here i dont know the way to parse this with cheerio so the good old split mehtod comes!
-            const datetime = repoHtml.split('<relative-time')[1].split(' ')[1].split('"')[1];
+    try {
+        if (cache.has(username)) {
+            //TODO: Check for expire time
+            return cache.get(username);
+        }
+        const response = await axios.get(`https://github.com/${username}?tab=repositories`);
+        const html = response.data;
+        const $ = cheerio.load(html);
+        const repositories = [];
+        if (typeof $('#user-repositories-list').html() == 'string') {
+            const $repoList = cheerio.load($('#user-repositories-list').html());
+            $repoList('li').each((i, item) => {
+                const $repo = cheerio.load($repoList(item).html());
+                const name = $repo('[itemprop="name codeRepository"]').text().trim();
+                const description = $repo('[itemprop="description"]').text().trim();
+                const language = $repo('[itemprop="programmingLanguage"]').text().trim();
+                const repoHtml = $repo.html();
+                //!Here i dont know the way to parse this with cheerio so the good old split mehtod comes!
+                const datetime = repoHtml.split('<relative-time')[1].split(' ')[1].split('"')[1];
 
-            repositories.push({
-                name,
-                description,
-                language,
-                lastUpdated: new Date(datetime).getTime(),
+                repositories.push({
+                    name,
+                    description,
+                    language,
+                    lastUpdated: new Date(datetime).getTime(),
+                });
             });
-        });
+        }
+        cache.set(username, { repositories, time: Date.now() });
+        return repositories;
+    } catch (error) {
+        throw error;
     }
-    cache.set(username, { repositories, time: Date.now() });
-    return repositories;
 }
 
 const getAll = async (req, res, next) => {
-    const username = req.params.username;
-    const repositories = await getAllRepositories(username);
-    res.json({ repositories });
+    try {
+        const username = req.params.username;
+        const repositories = await getAllRepositories(username);
+        res.json({ repositories });
+    } catch (error) {
+        next(error);
+    }
+
 }
 
 const getLatestCommit = async (req, res, next) => {
-    const username = req.params.username;
-    const repositories = await getAllRepositories(username);
-    res.json({ repositories });
+    try {
+        const username = req.params.username;
+        const repositories = await getAllRepositories(username);
+        res.json({ repositories });
+    } catch (error) {
+        next(error);
+    }
 }
 
 module.exports = {
