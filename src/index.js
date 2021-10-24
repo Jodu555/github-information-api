@@ -11,7 +11,7 @@ app.use(express.json());
 
 const { router: api } = require('./route');
 
-app.use(api);
+app.use('/api', api);
 
 
 const PORT = process.env.PORT || 3100;

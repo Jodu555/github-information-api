@@ -3,12 +3,17 @@ const cheerio = require('cheerio');
 const cache = new Map();
 
 const getAllRepositories = async (username) => {
+    if (cache.has(username)) {
+        //TODO: Check for expire time
+        return cache.get(username);
+    }
+
     const response = await axios.get(`https://github.com/${username}?tab=repositories`);
     const html = response.data;
     const $ = cheerio.load(html);
+    const repositories = [];
     if (typeof $('#user-repositories-list').html() == 'string') {
         const $repoList = cheerio.load($('#user-repositories-list').html());
-        const repositories = [];
         $repoList('li').each((i, item) => {
             const $repo = cheerio.load($repoList(item).html());
             const name = $repo('[itemprop="name codeRepository"]').text().trim();
@@ -26,6 +31,8 @@ const getAllRepositories = async (username) => {
             });
         });
     }
+    cache.set(username, { repositories, time: Date.now() });
+    return repositories;
 }
 
 const getAll = async (req, res, next) => {
@@ -41,5 +48,6 @@ const getLatestCommit = async (req, res, next) => {
 }
 
 module.exports = {
-    getAll
+    getAll,
+    getLatestCommit
 }
