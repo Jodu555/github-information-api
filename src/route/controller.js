@@ -7,7 +7,6 @@ const getAllRepositories = async (username) => {
         //TODO: Check for expire time
         return cache.get(username);
     }
-
     const response = await axios.get(`https://github.com/${username}?tab=repositories`);
     const html = response.data;
     const $ = cheerio.load(html);

@@ -13,6 +13,9 @@ const { router: api } = require('./route');
 
 app.use('/api', api);
 
+const { errorHandling, notFound } = require('./middleware');
+app.use('*', notFound);
+app.use(errorHandling);
 
 const PORT = process.env.PORT || 3100;
 app.listen(PORT, async () => {
