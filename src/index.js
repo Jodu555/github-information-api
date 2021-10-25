@@ -42,5 +42,19 @@ app.listen(PORT, async () => {
         });
     });
 
-    console.log(dayInfo);
+    // console.log(dayInfo);
+
+    calcQuotion(dayInfo);
+
+
 });
+
+function calcQuotion(obj) {
+    let total = 0;
+    let values = 0;
+    Object.values(obj).forEach(v => {
+        total += Number(v.count);
+        values++;
+    });
+    console.log(total / values);
+}
