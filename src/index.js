@@ -42,8 +42,6 @@ app.listen(PORT, async () => {
         });
     });
 
-    // console.log(dayInfo);
-
     calcQuotion(dayInfo);
 
 

@@ -11,3 +11,10 @@ An API to get every users last commit date
 * [ ] Add function to calc the avg commits per day
 * [ ] Write a documentation for this api
 * [ ] Bring this thing up and going
+
+## Thoughts
+* Routes: /api/:username/projects
+*         /api/:username/lastCommit
+*         /api/:username/languagaeDevision
+*         /api/:username/dayCommits
+*         /api/:username/avarageCommits
