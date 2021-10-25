@@ -2,12 +2,11 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const cache = new Map();
 
-const cacheTime = 20 * 60 * 1000;
+const cacheTime = process.env.CACHE_TIME || 20 * 60 * 1000;
 
 const getAllRepositories = async (username) => {
     try {
         if (cache.has(username)) {
-            //TODO: Check for expire time
             const diff = Date.now() - cache.get(username).time;
             if (diff < cacheTime)
                 return { ...cache.get(username), cache: true };
