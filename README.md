@@ -15,6 +15,6 @@ An API to get every users last commit date
 ## Thoughts
 * Routes: /api/:username/projects
 *         /api/:username/lastCommit
-*         /api/:username/languagaeDevision
+*         /api/:username/languageDevision
 *         /api/:username/dayCommits
 *         /api/:username/avarageCommits
