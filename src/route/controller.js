@@ -47,7 +47,11 @@ const getAllRepositories = async (username) => {
 
 const getDayInfos = async (username) => {
     try {
-
+        if (dayCache.has(username)) {
+            const diff = Date.now() - dayCache.get(username).time;
+            if (diff < cacheTime)
+                return { ...dayCache.get(username), cache: true };
+        }
 
         const response = await axios.get(`https://github.com/Jodu555`);
         const html = response.data;
@@ -65,6 +69,8 @@ const getDayInfos = async (username) => {
                 }
             });
         });
+        dayInfo.set(username, { cache: false, time: Date.now(), dayInfo, });
+        return dayInfo.get(username);
     } catch (error) {
         if (error.response.status == 404 || error.response.statusText == 'Not Found') {
             throw new Error('This user seems to be don\'t exists!');
