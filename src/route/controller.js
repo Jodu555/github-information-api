@@ -1,15 +1,16 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-const cache = new Map();
+const repositoryCache = new Map(); // The repository stuff cache
+const dayCache = new Map(); // The Day and commit stuff cache
 
 const cacheTime = process.env.CACHE_TIME || 20 * 60 * 1000; // 20 Minutes
 
 const getAllRepositories = async (username) => {
     try {
-        if (cache.has(username)) {
-            const diff = Date.now() - cache.get(username).time;
+        if (repositoryCache.has(username)) {
+            const diff = Date.now() - repositoryCache.get(username).time;
             if (diff < cacheTime)
-                return { ...cache.get(username), cache: true };
+                return { ...repositoryCache.get(username), cache: true };
         }
         const response = await axios.get(`https://github.com/${username}?tab=repositories`);
         const html = response.data;
