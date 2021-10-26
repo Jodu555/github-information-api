@@ -44,6 +44,25 @@ const getAllRepositories = async (username) => {
     }
 }
 
+const getDayInfos = async (username) => {
+    const response = await axios.get(`https://github.com/Jodu555`);
+    const html = response.data;
+    const $ = cheerio.load(html);
+
+    const dayInfo = {};
+
+    const $calendarGraph = cheerio.load($('svg.js-calendar-graph-svg').html());
+    $calendarGraph('g').each((i, graphGroups) => {
+        const $groupItem = cheerio.load($calendarGraph(graphGroups).html());
+        $groupItem('rect').each((j, rect) => {
+            const attributes = $groupItem(rect).attr();
+            dayInfo[attributes['data-date']] = {
+                count: attributes['data-count'],
+            }
+        });
+    });
+}
+
 const getAll = async (req, res, next) => {
     try {
         const username = req.params.username;
