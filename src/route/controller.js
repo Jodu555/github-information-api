@@ -122,10 +122,20 @@ const getLanguagaeDevision = async (req, res, next) => {
     }
 }
 
+const getDayCommits = async (req, res, next) => {
+    try {
+        const username = req.params.username;
+        const data = JSON.parse(JSON.stringify(await getAllRepositories(username)));
 
+        res.json({ data });
+    } catch (error) {
+        next(error);
+    }
+}
 
 module.exports = {
     getAll,
     getLatestCommit,
-    getLanguagaeDevision
+    getLanguagaeDevision,
+    getDayCommits
 }
