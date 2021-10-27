@@ -125,7 +125,7 @@ const getLanguagaeDevision = async (req, res, next) => {
 const getDayCommits = async (req, res, next) => {
     try {
         const username = req.params.username;
-        const data = JSON.parse(JSON.stringify(await getAllRepositories(username)));
+        const data = JSON.parse(JSON.stringify(await getDayInfos(username)));
 
         res.json({ data });
     } catch (error) {
