@@ -25,7 +25,7 @@ const PORT = process.env.PORT || 3100;
 app.listen(PORT, async () => {
     console.log(`Express App is listening on ${PORT}`);
 
-    calcQuotion(dayInfo);
+    // calcQuotion(dayInfo);
 
 
 });

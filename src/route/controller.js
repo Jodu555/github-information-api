@@ -38,7 +38,7 @@ const getAllRepositories = async (username) => {
         cache.set(username, { cache: false, time: Date.now(), repositories: repositories, });
         return cache.get(username);
     } catch (error) {
-        if (error.response.status == 404 || error.response.statusText == 'Not Found') {
+        if (error && error.response && error.response.status == 404 || error.response.statusText == 'Not Found') {
             throw new Error('This user seems to be don\'t exists!');
         }
         throw error;
@@ -72,7 +72,7 @@ const getDayInfos = async (username) => {
         dayInfo.set(username, { cache: false, time: Date.now(), dayInfo, });
         return dayInfo.get(username);
     } catch (error) {
-        if (error.response.status == 404 || error.response.statusText == 'Not Found') {
+        if (error && error.response && error.response.status == 404 || error.response.statusText == 'Not Found') {
             throw new Error('This user seems to be don\'t exists!');
         }
         throw error;
