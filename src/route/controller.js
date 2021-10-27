@@ -69,7 +69,16 @@ const getDayInfos = async (username) => {
                 }
             });
         });
-        dayCache.set(username, { cache: false, time: Date.now(), dayInfo, });
+        console.log(Object.keys(dayInfo)[0],);
+        dayCache.set(username, {
+            cache: false,
+            time: Date.now(),
+            period: [
+                Object.keys(dayInfo)[0],
+                Object.keys(dayInfo)[Object.keys(dayInfo).length - 1]
+            ],
+            dayInfo,
+        });
         return dayCache.get(username);
     } catch (error) {
         if (error && error.response && error.response.status == 404 || error && error.response && error.response.statusText && error.response.statusText == 'Not Found') {
