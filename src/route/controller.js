@@ -69,7 +69,6 @@ const getDayInfos = async (username) => {
                 }
             });
         });
-        console.log(Object.keys(dayInfo)[0],);
         dayCache.set(username, {
             cache: false,
             time: Date.now(),
@@ -148,10 +147,11 @@ const getAvarageCommits = async (req, res, next) => {
         let total = 0;
         let values = 0;
         Object.values(await getDayInfos(username)).forEach(v => {
+            console.log(1, v);
             total += Number(v.count);
             values++;
         });
-        console.log(total / values);
+        console.log(total, values, total / values);
         // res.json({ data });
     } catch (error) {
         next(error);
