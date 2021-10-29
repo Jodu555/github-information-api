@@ -146,13 +146,13 @@ const getAvarageCommits = async (req, res, next) => {
         const username = req.params.username;
         let total = 0;
         let values = 0;
-        Object.values(await getDayInfos(username)).forEach(v => {
-            console.log(1, v);
+        const dayInfo = await getDayInfos(username);
+        Object.values(dayInfo.dayInfo).forEach(v => {
             total += Number(v.count);
             values++;
         });
-        console.log(total, values, total / values);
-        // res.json({ data });
+        const avarage = total / values;
+        res.json({ period: dayInfo.period, total, values, avarage });
     } catch (error) {
         next(error);
     }
