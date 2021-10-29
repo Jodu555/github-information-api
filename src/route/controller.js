@@ -142,7 +142,7 @@ const getDayCommits = async (req, res, next) => {
     }
 }
 
-const getAvarageDayCommits = async (req, res, next) => {
+const getAvarageCommits = async (req, res, next) => {
     try {
         const username = req.params.username;
         let total = 0;
@@ -163,5 +163,6 @@ module.exports = {
     getAll,
     getLatestCommit,
     getLanguagaeDevision,
-    getDayCommits
+    getDayCommits,
+    getAvarageCommits
 }
