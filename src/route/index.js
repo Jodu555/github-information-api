@@ -8,4 +8,5 @@ router.get('/lastCommit/:username', controller.getLatestCommit); //Returns the l
 router.get('/languageDevision/:username', controller.getLanguagaeDevision); // Returns the language devision
 router.get('/dayCommits/:username', controller.getDayCommits)
 
+
 module.exports = { router, }

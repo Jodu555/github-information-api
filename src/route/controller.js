@@ -142,6 +142,23 @@ const getDayCommits = async (req, res, next) => {
     }
 }
 
+const getAvarageDayCommits = async (req, res, next) => {
+    try {
+        const username = req.params.username;
+        let total = 0;
+        let values = 0;
+        Object.values(await getDayInfos(username)).forEach(v => {
+            total += Number(v.count);
+            values++;
+        });
+        console.log(total / values);
+        // res.json({ data });
+    } catch (error) {
+        next(error);
+    }
+
+}
+
 module.exports = {
     getAll,
     getLatestCommit,
