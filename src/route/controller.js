@@ -151,7 +151,7 @@ const getAvarageCommits = async (req, res, next) => {
             total += Number(v.count);
             values++;
         });
-        const avarage = total / values;
+        const avarage = Math.round((total / values + Number.EPSILON) * 100) / 100;
         res.json({ period: dayInfo.period, total, values, avarage });
     } catch (error) {
         next(error);
