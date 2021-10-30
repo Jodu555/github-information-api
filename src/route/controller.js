@@ -35,8 +35,8 @@ const getAllRepositories = async (username) => {
                 });
             });
         }
-        cache.set(username, { cache: false, time: Date.now(), repositories: repositories, });
-        return cache.get(username);
+        repositoryCache.set(username, { cache: false, time: Date.now(), repositories: repositories, });
+        return repositoryCache.get(username);
     } catch (error) {
         if (error && error.response && error.response.status == 404 || error && error.response && error.response.statusText && error.response.statusText == 'Not Found') {
             throw new Error('This user seems to be don\'t exists!');

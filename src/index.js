@@ -21,7 +21,7 @@ app.use(errorHandling);
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-const PORT = process.env.PORT || 3100;
+const PORT = process.env.PORT || 3150;
 app.listen(PORT, async () => {
     console.log(`Express App is listening on ${PORT}`);
 });
