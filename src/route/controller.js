@@ -105,9 +105,18 @@ const getLatestCommit = async (req, res, next) => {
         data.repositories = data.repositories.sort((a, b) => {
             return a.lastUpdated + b.lastUpdated;
         });
-        data.info = data.repositories[0];
+        const repositoryName = req.params.repositoryName
+        if (repositoryName) {
+            data.repositories.forEach(repo => {
+                if (repo.name.toLowerCase() == repositoryName)
+                    data.info = repo;
+            });
+        } else {
+            data.info = data.repositories[0];
+        }
         delete data.repositories;
         res.json({ data });
+
     } catch (error) {
         next(error);
     }
