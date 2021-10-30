@@ -9,8 +9,10 @@ An API to get every users last commit date
 * [ ] Add function to get the commits for specific day
 * [x] Add function to get the commits for a year grouped in days
 * [x] Add function to calc the avg commits per day
+* [ ] Add function to get the latest commit for an exact project | To display maybe on working on page
 * [ ] Write a documentation for this api
 * [ ] Bring this thing up and going
+
 
 ## Thoughts
 *         /api/:username/projects
