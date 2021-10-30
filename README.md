@@ -7,8 +7,8 @@ An API to get every users last commit date
 * [x] bring from hakcy dacky way to nice looking
 * [x] add caching
 * [ ] Add function to get the commits for specific day
-* [ ] Add function to get the commits for a year grouped in days
-* [ ] Add function to calc the avg commits per day
+* [x] Add function to get the commits for a year grouped in days
+* [x] Add function to calc the avg commits per day
 * [ ] Write a documentation for this api
 * [ ] Bring this thing up and going
 
