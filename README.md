@@ -1,5 +1,5 @@
 # github-information-api
-An API to get every users last commit date
+An API to get every users last commit date and projects info and dayli commits e.g.
 
 ## Todo
 * [x] Figure out a way to get this data
@@ -11,6 +11,7 @@ An API to get every users last commit date
 * [x] Add function to calc the avg commits per day
 * [x] Add function to get the latest commit for an exact project | To display maybe on working on page
 * [ ] Write a documentation for this api
+* [ ] Think of a way to make the readme public available to maybe embed this in other websites with markdown previewer
 * [ ] Bring this thing up and going
 
 
