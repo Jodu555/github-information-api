@@ -16,6 +16,13 @@ An API to get every users last commit date and projects info and dayli commits e
 * [ ] Bring this thing up and going
 
 
+## API Docs
+*   https://api.github.com/users/Jodu555/repos
+*   https://api.github.com/users/Jodu555
+*   https://api.github.com/users/Jodu555/events
+*   https://api.github.com/repos/Jodu555/ez-uploader.de/languages
+
+
 ## Thoughts
 *         /api/:username/projects
 *         /api/:username/lastCommit
