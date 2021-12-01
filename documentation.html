@@ -63,8 +63,8 @@
 	<body>
 		<main style="margin-top: 7vh">
 			<div class="container">
-				<div class="accordion accordion-flush" id="accordionFlushExample">
-					<div class="accordion-item">
+				<div class="accordion accordion-flush" id="methods">
+					<!-- <div class="accordion-item">
 						<h2 class="accordion-header">
 							<button
 								class="accordion-button collapsed"
@@ -107,7 +107,7 @@
                                 }'></code></pre>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</main>
@@ -129,6 +129,33 @@
 		crossorigin="anonymous"
 	></script>
 	<script>
+		appendDocPath(
+			'GET',
+			'/api/all/:username',
+			'Gets all Public Projects',
+			'Gets all the Public available Repositories from any specified User with their unique Title, Description, lastUpdated and Language',
+			`{
+                                    "data": {
+                                      "cache": false,
+                                      "time": 1638360081931,
+                                      "repositories": [
+                                            {
+                                            "name": "Repo Name",
+                                            "description": "Repo Description",
+                                            "language": "JavaScript",
+                                            "lastUpdated": 1638359999000
+                                            },
+                                            {
+                                            "name": "Another Repo Name",
+                                            "description": "Another Repo Description",
+                                            "language": "JavaScript",
+                                            "lastUpdated": 1638356870000
+                                            }
+                                        ]
+                                    }
+                                }`
+		);
+
 		class JSONPrinter {
 			replacer(match, pIndent, pKey, pVal, pEnd) {
 				const key = '<span class=json-key>';
@@ -155,5 +182,34 @@
 				JSON.parse(element.attributes['data-json'].value)
 			);
 		});
+
+		function appendDocPath(type = 'GET', path, shortDesc, longDesc, response) {
+			const ID = type + '--' + path.replaceAll('/', '').replaceAll(':', '');
+			const div = document.createElement('div');
+			div.classList.add('accordion-item');
+			div.innerHTML += `<h2 class="accordion-header">
+							<button
+								class="accordion-button collapsed"
+								type="button"
+								data-bs-toggle="collapse"
+								data-bs-target="#${ID}"
+								aria-expanded="false"
+							>
+								<span class="get">${type}</span>
+								<span class="url">${path}</span>
+								<span class="info">${shortDesc}</span>
+							</button>
+						</h2>`;
+			div.innerHTML += `<div id="${ID}" class="accordion-collapse collapse">
+							<div class="accordion-body">
+								<h2>Response</h2>
+								<span class="description"
+									>${longDesc}</span>
+								</span>
+								<pre><code data-json='${response}'></code></pre>
+							</div>
+						</div>`;
+			document.querySelector('#methods').appendChild(div);
+		}
 	</script>
 </html>
