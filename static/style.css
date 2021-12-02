@@ -1,0 +1,74 @@
+.accordion-button span {
+    color: white;
+    border-radius: 3px;
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 19px;
+    min-width: 80px;
+    padding: 6px 0;
+    text-align: center;
+    text-shadow: 0 1px 0 rgb(0 0 0 / 10%);
+}
+
+.accordion-button span.get {
+    background: #49cc90;
+    font-weight: 700;
+}
+
+.accordion-button span.url {
+    align-items: center;
+    color: #3b4151;
+    font-family: monospace;
+    font-size: 21px;
+    font-weight: 600;
+    padding: 0 10px;
+    word-break: break-word;
+    font-weight: 700;
+}
+
+.accordion-button span.info {
+    color: #3b4151;
+    font-family: sans-serif;
+    font-size: 16px;
+    word-break: break-word;
+}
+
+pre {
+    background-color: ghostwhite;
+    border: 1px solid silver;
+    padding: 10px 20px;
+    margin: 20px;
+}
+
+.json-key {
+    color: brown;
+}
+
+.json-value {
+    color: navy;
+}
+
+.json-string {
+    color: olive;
+}
+
+.footer {
+    position: absolute;
+    background-color: #f8f9fa;
+    height: 3.5rem;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.footer-text {
+    padding-top: 1rem;
+}
+
+.diary {
+    font-family: 'Architects Daughter', cursive;
+}
+
+.accordion-item {
+    margin-top: 1vh;
+}
