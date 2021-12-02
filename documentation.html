@@ -156,6 +156,24 @@
 				},
 			}
 		);
+		appendDocPath(
+			'GET',
+			'/api/lastCommit/:username/:repositoryname?',
+			'Gets the last commit for the specified thing',
+			"Gets the last commit for the specified user or for the specified user's repository!",
+			{
+				data: {
+					cache: true,
+					time: 1638361774354,
+					info: {
+						name: 'Repository Name',
+						description: 'Repository Description',
+						language: 'JavaScript',
+						lastUpdated: 1638361616000,
+					},
+				},
+			}
+		);
 
 		class JSONPrinter {
 			replacer(match, pIndent, pKey, pVal, pEnd) {
