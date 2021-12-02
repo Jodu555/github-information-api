@@ -202,7 +202,7 @@
 			'GET',
 			'/api/dayCommits/:username',
 			'Gets the count of commits per day',
-			'Gets the count of commits for each day',
+			'Gets the count of commits for each day for the specified user',
 			{
 				data: {
 					cache: false,
@@ -220,6 +220,19 @@
 						},
 					},
 				},
+			}
+		);
+
+		appendDocPath(
+			'GET',
+			'/api/avarageCommits/:username',
+			'Gets the avarage Commits',
+			'Gets total and avarage commits for the specified user',
+			{
+				period: ['2020-11-29', '2021-12-02'],
+				total: 1261,
+				values: 369,
+				avarage: 3.42,
 			}
 		);
 
@@ -255,29 +268,29 @@
 			const div = document.createElement('div');
 			div.classList.add('accordion-item');
 			div.innerHTML += `<h2 class="accordion-header">
-							<button
-								class="accordion-button collapsed"
-								type="button"
-								data-bs-toggle="collapse"
-								data-bs-target="#${ID}"
-								aria-expanded="false"
-							>
-								<span class="get">${type}</span>
-								<span class="url">${path}</span>
-								<span class="info">${shortDesc}</span>
-							</button>
-						</h2>`;
+									<button
+										class="accordion-button collapsed"
+										type="button"
+										data-bs-toggle="collapse"
+										data-bs-target="#${ID}"
+										aria-expanded="false"
+									>
+										<span class="get">${type}</span>
+										<span class="url">${path}</span>
+										<span class="info">${shortDesc}</span>
+									</button>
+								</h2>`;
 			div.innerHTML += `<div id="${ID}" class="accordion-collapse collapse">
-							<div class="accordion-body">
-								<h2>Response</h2>
-								<span class="description"
-									>${longDesc}</span>
-								</span>
-								<pre><code data-json='${
-									typeof response == 'object' ? JSON.stringify(response) : response
-								}'></code></pre>
-							</div>
-						</div>`;
+									<div class="accordion-body">
+										<h2>Response</h2>
+										<span class="description"
+											>${longDesc}</span>
+										</span>
+										<pre><code data-json='${
+											typeof response == 'object' ? JSON.stringify(response) : response
+										}'></code></pre>
+									</div>
+								</div>`;
 			document.querySelector('#methods').appendChild(div);
 		}
 	</script>
