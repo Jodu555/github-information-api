@@ -27,8 +27,8 @@ const cheerio = require('cheerio');
 const PORT = process.env.PORT || 3100;
 if (process.env.https) {
     const sslProperties = {
-        key: fs.readFileSync('./server.key'),
-        cert: fs.readFileSync('./server.cert'),
+        key: fs.readFileSync(process.env.KEY_FILE),
+        cert: fs.readFileSync(process.env.CERT_FILE),
     };
     https.createServer(sslProperties, app).listen(PORT, () => {
         console.log(`Express App Listening on ${PORT}`);
