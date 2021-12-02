@@ -1,6 +1,10 @@
 # github-information-api
 An API to get every users last commit date and projects info and dayli commits e.g.
 
+# Website Preview
+======
+![This is the current Website!](https://images.jodu555.de/37ea532654e9243383fab095cfa9c1e3.png "This is the current Website!")
+
 ## Todo
 * [x] Figure out a way to get this data
 * [x] implement it in a rest api
