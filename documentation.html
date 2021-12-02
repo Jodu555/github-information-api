@@ -60,8 +60,19 @@
 		.json-string {
 			color: olive;
 		}
+		.footer {
+			position: absolute;
+			background-color: #f8f9fa;
+			height: 3.5rem;
+			bottom: 0;
+			width: 100%;
+			margin-bottom: 0;
+		}
+		.footer-text {
+			padding-top: 1rem;
+		}
 	</style>
-	<body>
+	<body style="min-height: 100vh; position: relative">
 		<nav class="navbar navbar-light" style="background-color: #e3f2fd">
 			<div class="container-fluid">
 				<span class="navbar-brand mb-0 h1">GitHub-Information-api</span>
@@ -74,7 +85,7 @@
 				</div>
 			</div>
 		</nav>
-		<main style="margin-top: 7vh">
+		<main style="margin-top: 7vh; padding-bottom: 3.5rem">
 			<div class="container">
 				<div class="callout-info shadow-sm p-3 mb-5 bg-body rounded" style="font-size: 2.8vmin">
 					<strong style="font-weight: bold; font-size: 3.4vmin">Caching:</strong> The Whole
@@ -88,8 +99,8 @@
 				<div class="accordion accordion-flush" id="methods"></div>
 			</div>
 		</main>
-		<footer>
-			<p class="text-center text-muted fixed-bottom pt-3" style="background-color: #f8f9fa">
+		<footer class="footer">
+			<p class="text-center text-muted footer-text">
 				© Copyright
 				<script>
 					document.write(new Date().getFullYear());
