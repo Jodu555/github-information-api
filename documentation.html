@@ -11,6 +11,12 @@
 			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 			crossorigin="anonymous"
 		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;display=swap"
+			rel="stylesheet"
+		/>
 		<link rel="stylesheet" href="callout.css" />
 	</head>
 	<style>
@@ -71,11 +77,16 @@
 		.footer-text {
 			padding-top: 1rem;
 		}
+		.diary {
+			font-family: 'Architects Daughter', cursive;
+		}
 	</style>
 	<body style="min-height: 100vh; position: relative">
 		<nav class="navbar navbar-light" style="background-color: #e3f2fd">
 			<div class="container-fluid">
-				<span class="navbar-brand mb-0 h1">GitHub-Information-api</span>
+				<span class="navbar-brand mb-0 h1 diary" style="font-size: 1.8rem"
+					>GitHub-Information-api</span
+				>
 				<div class="d-flex">
 					<a
 						href="https://github.com/Jodu555/github-information-api"
@@ -87,6 +98,9 @@
 		</nav>
 		<main style="margin-top: 7vh; padding-bottom: 3.5rem">
 			<div class="container">
+				<h1 class="text-center diary" style="margin-bottom: 3vh; font-size: 3.3rem">
+					Github-Information-api
+				</h1>
 				<div class="callout-info shadow-sm p-3 mb-5 bg-body rounded" style="font-size: 2.8vmin">
 					<strong style="font-weight: bold; font-size: 3.4vmin">Caching:</strong> The Whole
 					Application works with a <strong>Caching-System</strong> <br />
