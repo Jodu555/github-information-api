@@ -14,6 +14,8 @@ app.use(express.json());
 
 const { router: api } = require('./route');
 
+app.use('/', express.static('static'));
+
 app.use('/api', api);
 
 const { errorHandling, notFound } = require('./middleware');
