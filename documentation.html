@@ -222,7 +222,6 @@
 				},
 			}
 		);
-
 		appendDocPath(
 			'GET',
 			'/api/avarageCommits/:username',
@@ -256,6 +255,7 @@
 					.replace(jsonLine, this.replacer);
 			}
 		}
+
 		const jsonPrinter = new JSONPrinter();
 		[...document.querySelectorAll('[data-json]')].forEach((element) => {
 			element.innerHTML = jsonPrinter.prettyPrint(
