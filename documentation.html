@@ -195,6 +195,30 @@
 				},
 			}
 		);
+		appendDocPath(
+			'GET',
+			'/api/dayCommits/:username',
+			'Gets the count of commits per day',
+			'Gets the count of commits for each day',
+			{
+				data: {
+					cache: false,
+					time: 1638431635162,
+					period: ['2020-11-29', '2021-12-02'],
+					dayInfo: {
+						'2020-11-29': {
+							count: '0',
+						},
+						'2020-11-30': {
+							count: '0',
+						},
+						'2020-12-01': {
+							count: '0',
+						},
+					},
+				},
+			}
+		);
 
 		class JSONPrinter {
 			replacer(match, pIndent, pKey, pVal, pEnd) {
