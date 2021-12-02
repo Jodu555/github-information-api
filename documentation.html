@@ -11,6 +11,7 @@
 			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 			crossorigin="anonymous"
 		/>
+		<link rel="stylesheet" href="callout.css" />
 	</head>
 	<style>
 		.accordion-button span {
@@ -134,26 +135,26 @@
 			'/api/all/:username',
 			'Gets all Public Projects',
 			'Gets all the Public available Repositories from any specified User with their unique Title, Description, lastUpdated and Language',
-			`{
-                                    "data": {
-                                      "cache": false,
-                                      "time": 1638360081931,
-                                      "repositories": [
-                                            {
-                                            "name": "Repo Name",
-                                            "description": "Repo Description",
-                                            "language": "JavaScript",
-                                            "lastUpdated": 1638359999000
-                                            },
-                                            {
-                                            "name": "Another Repo Name",
-                                            "description": "Another Repo Description",
-                                            "language": "JavaScript",
-                                            "lastUpdated": 1638356870000
-                                            }
-                                        ]
-                                    }
-                                }`
+			{
+				data: {
+					cache: true,
+					time: 1638360081931,
+					repositories: [
+						{
+							name: 'Repository Name',
+							description: 'Repository Description',
+							language: 'JavaScript',
+							lastUpdated: 1638359999000,
+						},
+						{
+							name: 'Another Repository Name',
+							description: 'Another Repository Description',
+							language: 'JavaScript',
+							lastUpdated: 1638356870000,
+						},
+					],
+				},
+			}
 		);
 
 		class JSONPrinter {
@@ -206,7 +207,9 @@
 								<span class="description"
 									>${longDesc}</span>
 								</span>
-								<pre><code data-json='${response}'></code></pre>
+								<pre><code data-json='${
+									typeof response == 'object' ? JSON.stringify(response) : response
+								}'></code></pre>
 							</div>
 						</div>`;
 			document.querySelector('#methods').appendChild(div);
