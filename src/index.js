@@ -9,7 +9,6 @@ const dotenv = require('dotenv').config();
 const app = express();
 app.use(cors());
 app.use(morgan('dev'));
-app.use(helmet());
 app.use(express.json());
 
 const { router: api } = require('./route');
