@@ -13,6 +13,15 @@ app.use(express.json());
 
 const { router: api } = require('./route');
 
+const cacheTime = process.env.CACHE_TIME || 20 * 60 * 1000
+
+app.get('/', async (req, res) => {
+    let data = fs.readFileSync('static/index.html', 'utf-8');
+    data = data.replace('$==time==$', cacheTime / 1000 / 60);
+    data = data.replace('$==unit==$', 'Minutes');
+    res.send(data);
+});
+
 app.use('/', express.static('static'));
 
 app.use('/api', api);
