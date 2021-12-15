@@ -30,8 +30,6 @@ const { errorHandling, notFound } = require('./middleware');
 app.use('*', notFound);
 app.use(errorHandling);
 
-const axios = require('axios');
-const cheerio = require('cheerio');
 
 const PORT = process.env.PORT || 3100;
 if (process.env.https) {
