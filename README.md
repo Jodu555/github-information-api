@@ -17,7 +17,7 @@ An API to get every users last commit date and projects info and dayli commits e
 * [x] Write a documentation for this api
 * [ ] Think of a way to make the readme public available to maybe embed this in other websites with markdown previewer
 * [ ] Rewrite certain functions to use the public GitHub API
-* [ ] Show an dynamic unit for the latest api call
+* [x] Show an dynamic unit for the latest api call / Format the time nicely
 * [x] Bring this thing up and going
 
 

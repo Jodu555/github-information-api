@@ -27,9 +27,9 @@ app.get('/', async (req, res) => {
 
 function formatTime(time) {
     const hours = parseInt(time / 1000 / 60 / 60).toString();
-    time %= 3600000;
+    time %= 1000 * 60 * 60;
     const minutes = parseInt(time / 1000 / 60).toString();
-    time %= 60000;
+    time %= 1000 * 60;
     const seconds = parseInt(time / 1000).toString();
     return hours + ":" + minutes.padStart(2, '0') + ":" + seconds.padStart(2, '0');
 }
