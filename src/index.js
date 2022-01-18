@@ -21,10 +21,18 @@ app.get('/', async (req, res) => {
     let data = fs.readFileSync('static/index.html', 'utf-8');
     data = data.replace('$==time==$', cacheTime / 1000 / 60);
     data = data.replace('$==unit==$', 'Minutes');
-
-    data = data.replace('$==latest_api_call==$', Math.round((Date.now() - latest_api_call) / 1000 / 60) + ' Minutes');
+    data = data.replace('$==latest_api_call==$', formatTime(Date.now() - latest_api_call) + ' HH:MM:SS');
     res.send(data);
 });
+
+function formatTime(time) {
+    const hours = parseInt(time / 1000 / 60 / 60).toString();
+    time %= 3600000;
+    const minutes = parseInt(time / 1000 / 60).toString();
+    time %= 60000;
+    const seconds = parseInt(time / 1000).toString();
+    return hours + ":" + minutes.padStart(2, '0') + ":" + seconds.padStart(2, '0');
+}
 
 app.use('/', express.static('static'));
 
