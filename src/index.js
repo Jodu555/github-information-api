@@ -15,16 +15,24 @@ const { router: api } = require('./route');
 
 const cacheTime = process.env.CACHE_TIME || 20 * 60 * 1000
 
+let latest_api_call = Date.now();
+
 app.get('/', async (req, res) => {
+    console.log(latest_api_call);
     let data = fs.readFileSync('static/index.html', 'utf-8');
     data = data.replace('$==time==$', cacheTime / 1000 / 60);
     data = data.replace('$==unit==$', 'Minutes');
+
+    data = data.replace('$==latest_api_call==$', Math.round((Date.now() - latest_api_call) / 1000 / 60) + ' Minutes');
     res.send(data);
 });
 
 app.use('/', express.static('static'));
 
-app.use('/api', api);
+app.use('/api', (req, res, next) => {
+    latest_api_call = Date.now();
+    next();
+}, api);
 
 const { errorHandling, notFound } = require('./middleware');
 app.use('*', notFound);
